@@ -12,7 +12,7 @@ export class ConnexionService {
 
   public async connexion(connexion: Connexion): Promise<any> {
     return this.httpClient
-      .post<Utilisateur>('http://localhost:8080/be/connexion', connexion)
+      .post<Utilisateur>('http://localhost/be/connexion', connexion)
       .toPromise()
       .then((result: any) => {
         if (result) {

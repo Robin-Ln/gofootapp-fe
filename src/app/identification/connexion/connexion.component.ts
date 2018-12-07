@@ -43,14 +43,15 @@ export class ConnexionComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.connexionForm.invalid) {
-        this.loading = false;
         return;
     }
 
     const connexion: Connexion = this.connexionForm.value;
     const utilisateur: Utilisateur = await this.connexionService.connexion(connexion);
-
     console.log(utilisateur);
+
+    this.loading = false;
+
   }
 
 }
