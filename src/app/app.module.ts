@@ -23,8 +23,8 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
 import { InscriptionComponent } from './identification/inscription/inscription.component';
-
-
+import { ConnexionService } from './service/connexion/connexion.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -52,9 +52,11 @@ import { InscriptionComponent } from './identification/inscription/inscription.c
     FlexLayoutModule,
     // Forms
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // Http
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ConnexionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

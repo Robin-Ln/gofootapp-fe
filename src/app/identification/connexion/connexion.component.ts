@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { ConnexionService } from 'src/app/service/connexion/connexion.service';
+import { Connexion } from 'src/app/modele/connexion';
+import { Utilisateur } from 'src/app/modele/utilisateur';
 
 
 @Component({
@@ -10,11 +13,13 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class ConnexionComponent implements OnInit {
 
   connexionForm: FormGroup;
-  submitted = false;
   hide = true;
   loading = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+      private formBuilder: FormBuilder,
+      private connexionService: ConnexionService
+    ) { }
 
   ngOnInit(): void {
     this.connexionForm = this.formBuilder.group({
@@ -33,16 +38,19 @@ export class ConnexionComponent implements OnInit {
 
   get form() { return this.connexionForm.controls; }
 
-  onSubmit() {
-    this.submitted = true;
+  async onSubmit() {
     this.loading = true;
 
     // stop here if form is invalid
     if (this.connexionForm.invalid) {
+        this.loading = false;
         return;
     }
 
-    alert('SUCCESS!! :-)');
+    const connexion: Connexion = this.connexionForm.value;
+    const utilisateur: Utilisateur = await this.connexionService.connexion(connexion);
+
+    console.log(utilisateur);
   }
 
 }
