@@ -12,6 +12,7 @@ export class ConnexionComponent implements OnInit {
   connexionForm: FormGroup;
   submitted = false;
   hide = true;
+  loading = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -34,6 +35,7 @@ export class ConnexionComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.loading = true;
 
     // stop here if form is invalid
     if (this.connexionForm.invalid) {
