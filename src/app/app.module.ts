@@ -23,6 +23,7 @@ import { AuthPageComponent } from './auth-page/auth-page.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
+import { InscriptionComponent } from './identification/inscription/inscription.component';
 
 
 
@@ -31,7 +32,8 @@ import { ConnexionComponent } from './identification/connexion/connexion.compone
   declarations: [
     AppComponent,
     AuthPageComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
