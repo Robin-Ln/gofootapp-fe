@@ -22,6 +22,7 @@ import {
 import { AuthPageComponent } from './auth-page/auth-page.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConnexionComponent } from './identification/connexion/connexion.component';
 
 
 
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    AuthPageComponent
+    AuthPageComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
