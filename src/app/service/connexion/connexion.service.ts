@@ -12,18 +12,18 @@ export class ConnexionService {
 
   public async connexion(connexion: Connexion): Promise<any> {
     return this.httpClient
-      .post<Utilisateur>('http://localhost/be/connexion', connexion)
+      .post<Boolean>('http://localhost/be/connexion', connexion)
       .toPromise()
       .then((result: any) => {
         if (result) {
-          const utilisateur: Utilisateur = result;
-          return utilisateur;
+          const res: Boolean = result;
+          return res;
         }
-        return undefined;
+        return false;
       })
       .catch(error => {
         console.error('ConnexionService error ', error);
-        return undefined;
+        return false;
       });
   }
 }

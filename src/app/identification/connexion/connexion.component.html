@@ -6,12 +6,12 @@
         <div class="mui-row">
             <div class="mui-col-md-offset-5 mui-col-md-2">
                 <mat-form-field>
-                    <input matInput placeholder="Email" formControlName="email" required>
-                    <mat-error *ngIf="form.email.errors?.required">
-                        Email is <strong>required</strong>
+                    <input matInput placeholder="mail" formControlName="mail" required>
+                    <mat-error *ngIf="form.mail.errors?.required">
+                        mail is <strong>required</strong>
                     </mat-error>
-                    <mat-error *ngIf="form.email.errors?.email">
-                        Email must be a <strong>valid email address</strong>
+                    <mat-error *ngIf="form.mail.errors?.mail">
+                        mail must be a <strong>valid mail address</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -22,7 +22,7 @@
                 <mat-form-field>
                     <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-error *ngIf="form.email.errors?.required">
+                    <mat-error *ngIf="form.mail.errors?.required">
                         password is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
