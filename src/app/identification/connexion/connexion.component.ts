@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ConnexionService } from 'src/app/service/connexion/connexion.service';
-import { Connexion } from 'src/app/modele/connexion';
+import { Login } from 'src/app/modele/login';
 
 
 @Component({
@@ -45,8 +45,11 @@ export class ConnexionComponent implements OnInit {
         this.loading = false;
         return;
     }
-    const connexion: Connexion = this.connexionForm.value;
-    const res: Boolean = await this.connexionService.connexion(connexion);
+    const login: Login = this.connexionForm.value;
+    const res: Boolean = await this.connexionService.connexion(login);
+    if (res) {
+      console.log();
+    }
     console.log(res);
     this.loading = false;
   }

@@ -1,25 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from 'src/app/modele/utilisateur';
-import { HttpClient } from '@angular/common/http';
-import { Connexion } from 'src/app/modele/connexion';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Login } from 'src/app/modele/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConnexionService {
 
+  redirectUrl: string;
+
+  isLoggedIn: boolean;
+
+  login: Login;
+
   constructor(private httpClient: HttpClient) {}
 
-  public async connexion(connexion: Connexion): Promise<any> {
+  public async connexion(login: Login): Promise<boolean> {
     return this.httpClient
-      .post<Boolean>('http://localhost/be/connexion', connexion)
+      .post<Boolean>('http://localhost:8080/be/connexion', login)
       .toPromise()
       .then((result: any) => {
-        if (result) {
-          const res: Boolean = result;
-          return res;
-        }
+        return result;
+      })
+      .catch(error => {
+        console.error('ConnexionService error ', error);
         return false;
+      });
+  }
+
+  public async checkToken(): Promise<Boolean> {
+    const params = new HttpParams().set('token', this.login.token);
+    return this.httpClient
+      .get<Boolean>('http://localhost:8080/be/connexion', {params})
+      .toPromise()
+      .then((result: Boolean) => {
+        return result;
       })
       .catch(error => {
         console.error('ConnexionService error ', error);
