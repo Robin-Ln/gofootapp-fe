@@ -14,7 +14,6 @@ export class ConnexionComponent implements OnInit {
   connexionForm: FormGroup;
   hide = true;
   loading = false;
-  sha1 = require('../../../../node_modules/sha1/sha1.js');
 
   constructor(
       private formBuilder: FormBuilder,
@@ -46,14 +45,9 @@ export class ConnexionComponent implements OnInit {
         this.loading = false;
         return;
     }
-
-    const mdpSha1 = this.sha1(this.connexionForm.value.password);
-
     const connexion: Connexion = this.connexionForm.value;
-    connexion.password = mdpSha1;
-    console.log('connexion', connexion);
     const res: Boolean = await this.connexionService.connexion(connexion);
-    console.log('ConnexionComponent', res);
+    console.log(res);
     this.loading = false;
   }
 
