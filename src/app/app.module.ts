@@ -23,8 +23,9 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
 import { InscriptionComponent } from './identification/inscription/inscription.component';
-import { ConnexionService } from './service/connexion/connexion.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from './service/login/login.service';
+import { ConfigurationService } from './service/config/configuration.service';
 
 
 @NgModule({
@@ -56,7 +57,10 @@ import { HttpClientModule } from '@angular/common/http';
     // Http
     HttpClientModule
   ],
-  providers: [ConnexionService],
+  providers: [
+    ConfigurationService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

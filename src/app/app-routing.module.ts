@@ -7,7 +7,7 @@ import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'connexion', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'connexion', component: ConnexionComponent },
-  { path: 'inscription', component: InscriptionComponent }
+  { path: 'inscription', component: InscriptionComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

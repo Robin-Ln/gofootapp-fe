@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { ConnexionService } from 'src/app/service/connexion/connexion.service';
 import { Login } from 'src/app/modele/login';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login/login.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ConnexionComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-      private connexionService: ConnexionService
+      private loginService: LoginService,
+      private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -45,11 +47,17 @@ export class ConnexionComponent implements OnInit {
         this.loading = false;
         return;
     }
+
+    // verification du login sur le serveur
     const login: Login = this.connexionForm.value;
-    const res: Boolean = await this.connexionService.connexion(login);
+    const res: Boolean = await this.loginService.connexion(login);
     if (res) {
-      console.log();
+      this.loginService.isLoggedIn = true;
+      this.loginService.login = login;
+      this.router.navigate(['/inscription']);
     }
+
+    // Afficher un message d'erreur dans un cadre rouge
     console.log(res);
     this.loading = false;
   }

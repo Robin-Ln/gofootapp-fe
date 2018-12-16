@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ConnexionService } from '../service/connexion/connexion.service';
+import { LoginService } from '../service/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { ConnexionService } from '../service/connexion/connexion.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private connexionService: ConnexionService,
+    private loginService: LoginService,
     private router: Router
   ) {}
 
@@ -21,17 +21,18 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(): boolean {
     // ne c'est jamais connecter
-    if (!this.connexionService.isLoggedIn) {
+    if (!this.loginService.isLoggedIn) {
       this.router.navigate(['/connexion']);
       return false;
     }
 
-    // verification du token
-    if (!this.connexionService.checkToken()) {
+    // verification de la date
+    if (!this.loginService.checkLogedIn()) {
       this.router.navigate(['/connexion']);
+      this.loginService.isLoggedIn = false;
       return false;
     }
 
-    return false;
+    return true;
   }
 }
