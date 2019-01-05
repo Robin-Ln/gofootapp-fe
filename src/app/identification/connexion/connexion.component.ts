@@ -13,8 +13,9 @@ import { LoginService } from 'src/app/service/login/login.service';
 export class ConnexionComponent implements OnInit {
 
   connexionForm: FormGroup;
-  hide = true;
-  loading = false;
+  hide: Boolean = false;
+  showError: Boolean = false;
+  loading: Boolean = false;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -60,6 +61,7 @@ export class ConnexionComponent implements OnInit {
     // Afficher un message d'erreur dans un cadre rouge
     console.log(res);
     this.loading = false;
+    this.showError = true;
   }
 
 }

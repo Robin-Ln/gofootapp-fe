@@ -1,6 +1,15 @@
 <div class="mui--text-title">Connexion</div>
 
 <div class="mui-container-fluid">
+
+    <div class="mui-row" *ngIf="showError">
+        <div class="mui-col-md-offset-3 mui-col-md-6 mui-col-md-offset-3">
+            <div class="mui-panel" style="background-color:#F44336;color:#fff;">
+                Il y a une erreur dans dans le login ou mdp
+            </div>
+        </div>
+    </div>
+
     <form [formGroup]="connexionForm" (ngSubmit)="onSubmit()">
 
         <div class="mui-row">
@@ -34,7 +43,7 @@
         <div class="mui-row">
             <div class="mui-col-md-offset-5 mui-col-md-2">
                 <button mat-raised-button color="primary" [disabled]="loading">
-                    Register
+                    Connexion
                 </button>
             </div>
         </div>
