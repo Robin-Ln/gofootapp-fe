@@ -19,13 +19,31 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.connexionForm = this.formBuilder.group({
       email: ['', [
-        Validators.required,
-        Validators.email
+          Validators.required,
+          Validators.email
+        ]
+      ],
+      nom: ['', [
+          Validators.required,
+          Validators.email
+        ]
+      ],
+      prenom: ['', [
+          Validators.required,
+        ]
+      ],
+      telephone: ['', [
+          Validators.required,
         ]
       ],
       password: ['', [
-        Validators.required,
-        Validators.minLength(6)
+          Validators.required,
+          Validators.minLength(6)
+        ]
+      ],
+      confirmation: ['', [
+          Validators.required,
+          Validators.minLength(6)
         ]
       ]
     });

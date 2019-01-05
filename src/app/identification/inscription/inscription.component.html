@@ -1,6 +1,6 @@
-<div class="mui--text-title">Connexion</div>
+<div class="mui--text-title">Inscription</div>
 
-<div class="mui-container-fluid">
+<div class="mui-container-fluid mui-panel">
     <form [formGroup]="connexionForm" (ngSubmit)="onSubmit()">
 
         <div class="mui-row">
@@ -20,9 +20,54 @@
         <div class="mui-row">
             <div class="mui-col-md-offset-5 mui-col-md-2">
                 <mat-form-field>
+                    <input matInput placeholder="Nom" formControlName="nom" required>
+                    <mat-error *ngIf="form.nom.errors?.required">
+                        Nom is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mui-row">
+            <div class="mui-col-md-offset-5 mui-col-md-2">
+                <mat-form-field>
+                    <input matInput placeholder="Prenom" formControlName="prenom" required>
+                    <mat-error *ngIf="form.prenom.errors?.required">
+                        Prenom is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mui-row">
+            <div class="mui-col-md-offset-5 mui-col-md-2">
+                <mat-form-field>
+                    <input matInput placeholder="Telephone" formControlName="telephone" required>
+                    <mat-error *ngIf="form.telephone.errors?.required">
+                            Telephone is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mui-row">
+            <div class="mui-col-md-offset-5 mui-col-md-2">
+                <mat-form-field>
                     <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="form.email.errors?.required">
+                        password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mui-row">
+            <div class="mui-col-md-offset-5 mui-col-md-2">
+                <mat-form-field>
+                    <input matInput placeholder="Confirmation" [type]="hide ? 'password' : 'text'" formControlName="confirmation" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="form.confirmation.errors?.required">
                         password is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
