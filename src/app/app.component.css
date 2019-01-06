@@ -1,11 +1,12 @@
-
-.example-sidenav-content {
-  display: flex;
+.sidenav-container {
   height: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
-.example-sidenav {
-  padding: 20px;
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
