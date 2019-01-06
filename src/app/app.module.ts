@@ -17,7 +17,8 @@ import {
   MatIconModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCardModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,6 +50,8 @@ import { ConfigurationService } from './service/config/configuration.service';
     MatToolbarModule,
     MatSidenavModule,
     MatMenuModule,
+    MatCardModule,
+    MatSidenavModule,
     // Flex Layout
     FlexLayoutModule,
     // Forms

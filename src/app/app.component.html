@@ -1,30 +1,116 @@
-<header class="mui-appbar mui--z1">
-    <!-- Appbar HTML goes here -->
-    <div class="mui-container">
-        <table>
-            <tr class="mui--appbar-height">
-            <td class="mui--text-title">Brand.io</td>
-            <td class="mui--text-right">
-                <ul class="mui-list--inline mui--text-body2">
-                <li><a href="#">About</a></li>
-                <li><a routerLink="/inscription" routerLinkActive="active">inscription</a></li>
-                <li><a routerLink="/connexion" routerLinkActive="active">connection</a></li>
-                </ul>
-            </td>
-            </tr>
-        </table>
-    </div>
-</header>
-<div id="content-wrapper" class="mui--text-center">
-    <!-- Content HTML goes here -->
-    <div class="mui--appbar-height"></div>
-    <router-outlet></router-outlet>
+<mat-toolbar class="row">
+    <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>more_vert</mat-icon>
+    </button>
 
-</div>
-<footer>
-    <div class="mui-container mui--text-center">
-        Made with ♥ by <a href="https://www.muicss.com">MUICSS</a>
+    <div class="col">
+        <a class="navbar-brand" href="#">Gofootapp</a>
     </div>
+    <div class="col-1">
+        <a routerLink="/inscription" routerLinkActive="active">inscription</a>
+    </div>
+    <div class="col-1">
+        <a routerLink="/connexion" routerLinkActive="active">connection</a>
+    </div>
+    <div class="col-1"></div>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Auto-resizing sidenav</p>
+    </mat-drawer>
+    
+    <br>
+    
+    
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content> 
+
+</mat-drawer-container>
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+            <!-- Content -->
+            <h5 class="text-uppercase">Footer Content</h5>
+            <p>Here you can use rows and columns here to organize your footer content.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Links</h5>
+
+            <ul class="list-unstyled">
+                <li>
+                <a href="#!">Link 1</a>
+                </li>
+                <li>
+                <a href="#!">Link 2</a>
+                </li>
+                <li>
+                <a href="#!">Link 3</a>
+                </li>
+                <li>
+                <a href="#!">Link 4</a>
+                </li>
+            </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Links</h5>
+
+            <ul class="list-unstyled">
+                <li>
+                <a href="#!">Link 1</a>
+                </li>
+                <li>
+                <a href="#!">Link 2</a>
+                </li>
+                <li>
+                <a href="#!">Link 3</a>
+                </li>
+                <li>
+                <a href="#!">Link 4</a>
+                </li>
+            </ul>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/education/angular/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+
 </footer>
-
-
