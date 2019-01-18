@@ -1,11 +1,34 @@
-<div class="mui--text-title">Inscription</div>
+<div class="container">
+
+    <div class="text-center">Inscription</div>
 
 
-<div class="mui-container-fluid mui-panel">
     <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
 
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
+        <div class="row">
+            <div class="offset-4"></div>
+            <div class="col-2">
+                <mat-form-field>
+                    <input matInput placeholder="Nom" formControlName="nom" required>
+                    <mat-error *ngIf="inscriptionForm.get('nom').hasError('required')">
+                        Nom is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-2">
+                <mat-form-field>
+                    <input matInput placeholder="Prenom" formControlName="prenom" required>
+                    <mat-error *ngIf="inscriptionForm.get('prenom').hasError('required')">
+                        Prenom is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="offset-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="offset-4"></div>
+            <div class="col-2">
                 <mat-form-field>
                     <input matInput placeholder="Email" formControlName="email" required>
                     <mat-error *ngIf="inscriptionForm.get('email').hasError('required')">
@@ -16,32 +39,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-        </div>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
-                <mat-form-field>
-                    <input matInput placeholder="Nom" formControlName="nom" required>
-                    <mat-error *ngIf="inscriptionForm.get('nom').hasError('required')">
-                        Nom is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
-                <mat-form-field>
-                    <input matInput placeholder="Prenom" formControlName="prenom" required>
-                    <mat-error *ngIf="inscriptionForm.get('prenom').hasError('required')">
-                        Prenom is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
+            <div class="col-2">
                 <mat-form-field>
                     <input matInput placeholder="Telephone" formControlName="telephone" required>
                     <mat-error *ngIf="inscriptionForm.get('telephone').hasError('required')">
@@ -49,10 +47,12 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <div class="offset-4"></div>
         </div>
 
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
+        <div class="row">
+            <div class="offset-4"></div>
+            <div class="col-auto">
                 <mat-form-field>
                     <input 
                     matInput 
@@ -66,10 +66,13 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            
+            <div class="offset-4"></div>
         </div>
 
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
+        <div class="row">
+            <div class="offset-4"></div>
+            <div class="col-auto">
                 <mat-form-field>
                     <input matInput 
                     placeholder="Confirmation" 
@@ -86,16 +89,18 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+                <div class="offset-4"></div>
         </div>
 
-        <br>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
+        <div class="row">
+            <div class="offset-4"></div>
+            <div class="col-auto">
                 <button mat-raised-button color="primary" [disabled]="loading">
                     Register
                 </button>
             </div>
+            <div class="offset-4"></div>
         </div>
     </form>  
+
 </div>
