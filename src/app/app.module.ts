@@ -28,7 +28,7 @@ import { ConnexionComponent } from './identification/connexion/connexion.compone
 import { InscriptionComponent } from './identification/inscription/inscription.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './service/login/login.service';
-import { ConfigurationService } from './service/config/configuration.service';
+import { InscriptionService } from './service/inscription/inscription.service';
 
 
 @NgModule({
@@ -65,8 +65,8 @@ import { ConfigurationService } from './service/config/configuration.service';
     HttpClientModule
   ],
   providers: [
-    ConfigurationService,
-    LoginService
+    LoginService,
+    InscriptionService
   ],
   bootstrap: [AppComponent]
 })

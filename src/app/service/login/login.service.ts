@@ -2,7 +2,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/app/modele/login';
 import { Configuration } from 'src/app/modele/configuration/configuration';
-import { ConfigurationService } from '../config/configuration.service';
 
 
 @Injectable({
