@@ -1,51 +1,46 @@
-<div class="mui--text-title">Connexion</div>
+<div class="container text-center">
+	<h3>Connexion</h3>
+	<div class="row " *ngIf="showError">
+		<div class="col" *ngIf="showError text-center">
+			<div class="alert alert-danger alert-dismissible fade show "
+				role="alert">
+				Il y a une erreur dans dans le login ou mdp
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+	</div>
 
-<div class="mui-container-fluid">
+	<form [formGroup]="connexionForm" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="col">
+				<mat-form-field> <input matInput placeholder="mail"
+					formControlName="mail" required> <mat-error
+					*ngIf="connexionForm.hasError(required)"> mail is <strong>required</strong>
+				</mat-error> <mat-error *ngIf="!connexionForm.hasError(mail)">
+				 <strong>Mail invalide </strong> </mat-error> </mat-form-field>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<mat-form-field> <input matInput
+					placeholder="password" [type]="hide ? 'password' : 'text'"
+					formControlName="password" required> <mat-icon matSuffix
+					(click)="hide = !hide">{{hide ? 'visibility_off' :
+				'visibility'}}</mat-icon> <mat-error *ngIf="!connexionForm.hasError(required)">
+				Mot de passe Invalide </mat-error> </mat-form-field>
+			</div>
+		</div>
 
-    <div class="mui-row" *ngIf="showError">
-        <div class="mui-col-md-offset-3 mui-col-md-6 mui-col-md-offset-3">
-            <div class="mui-panel" style="background-color:#F44336;color:#fff;">
-                Il y a une erreur dans dans le login ou mdp
-            </div>
-        </div>
-    </div>
+		<br>
 
-    <form [formGroup]="connexionForm" (ngSubmit)="onSubmit()">
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
-                <mat-form-field>
-                    <input matInput placeholder="mail" formControlName="mail" required>
-                    <mat-error *ngIf="form.mail.errors?.required">
-                        mail is <strong>required</strong>
-                    </mat-error>
-                    <mat-error *ngIf="form.mail.errors?.mail">
-                        mail must be a <strong>valid mail address</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
-                <mat-form-field>
-                    <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-error *ngIf="form.mail.errors?.required">
-                        password is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="mui-row">
-            <div class="mui-col-md-offset-5 mui-col-md-2">
-                <button mat-raised-button color="primary" [disabled]="loading">
-                    Connexion
-                </button>
-            </div>
-        </div>
-    </form>  
+		<div class="row">
+			<div class="col">
+				<button mat-raised-button color="primary" [disabled]="loading">
+					Connexion</button>
+			</div>
+		</div>
+	</form>
 </div>

@@ -13,7 +13,7 @@ import { LoginService } from 'src/app/service/login/login.service';
 export class ConnexionComponent implements OnInit {
 
   connexionForm: FormGroup;
-  hide: Boolean = false;
+  hide: Boolean = true;
   showError: Boolean = false;
   loading: Boolean = false;
 
