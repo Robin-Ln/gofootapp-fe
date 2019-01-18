@@ -5,6 +5,8 @@ import {
   confirmPasswordValidator,
   uniqueMailValidator } from 'src/app/validators/form.validators';
 import { InscriptionService } from 'src/app/service/inscription/inscription.service';
+import { Utilisateur } from 'src/app/modele/utilisateur';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class InscriptionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private inscriptionService: InscriptionService
+    private inscriptionService: InscriptionService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -61,24 +64,25 @@ export class InscriptionComponent implements OnInit {
 
   }
 
-  onSubmit() {
-
-    //console.log(this.inscriptionForm);
-    //console.log(this.inscriptionForm.invalid);
-
-    this.inscriptionService.test();
-
-    /*
-    this.submitted = true;
+  async onSubmit() {
     this.loading = true;
 
     // stop here if form is invalid
-    if (this.connexionForm.invalid) {
+    if (this.inscriptionForm.invalid) {
+        this.loading = false;
         return;
     }
 
-    alert('SUCCESS!! :-)');
-    */
+    // inscription
+    const utilisateur: Utilisateur = this.inscriptionForm.value;
+    const res: Boolean = await this.inscriptionService.inscription(utilisateur);
+    if (res) {
+      this.router.navigate(['/connexion']);
+    }
+
+    // Afficher un message d'erreur dans un cadre rouge
+    console.log(res);
+    this.loading = false;
   }
 
 }
