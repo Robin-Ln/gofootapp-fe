@@ -13,6 +13,10 @@ export class InscriptionService {
     this.config = new Configuration();
   }
 
+  public async test() {
+    console.log('test');
+  }
+
 
   public async mailExist(mail: String): Promise<boolean> {
     return this.httpClient

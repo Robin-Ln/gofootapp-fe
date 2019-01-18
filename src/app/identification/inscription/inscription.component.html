@@ -37,6 +37,12 @@
                     <mat-error *ngIf="inscriptionForm.get('email').hasError('email')">
                         Email must be a <strong>valid email address</strong>
                     </mat-error>
+                    <mat-error *ngIf="inscriptionForm.get('email').status === 'PENDING'">
+                        Checking...
+                    </mat-error>
+                    <mat-error *ngIf="inscriptionForm.get('email').status === 'VALID'">
+                        😺 Email is available!
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="col-2">

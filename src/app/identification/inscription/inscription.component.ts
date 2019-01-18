@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { CrossFieldErrorMatcher, confirmPasswordValidator } from 'src/app/validators/form.validators';
+import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { 
+  CrossFieldErrorMatcher,
+  confirmPasswordValidator,
+  uniqueMailValidator } from 'src/app/validators/form.validators';
+import { InscriptionService } from 'src/app/service/inscription/inscription.service';
 
 
 @Component({
@@ -16,7 +20,10 @@ export class InscriptionComponent implements OnInit {
   hide = true;
   loading = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private inscriptionService: InscriptionService
+  ) { }
 
   ngOnInit(): void {
 
@@ -25,7 +32,9 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionForm = this.formBuilder.group({
       email: ['', [
           Validators.required,
-          Validators.email
+          Validators.email,
+        ], [
+          uniqueMailValidator(this.inscriptionService)
         ]
       ],
       nom: ['', [
@@ -54,8 +63,10 @@ export class InscriptionComponent implements OnInit {
 
   onSubmit() {
 
-    console.log(this.inscriptionForm);
-    console.log(this.inscriptionForm.invalid);
+    //console.log(this.inscriptionForm);
+    //console.log(this.inscriptionForm.invalid);
+
+    this.inscriptionService.test();
 
     /*
     this.submitted = true;
