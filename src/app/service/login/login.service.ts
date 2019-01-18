@@ -2,7 +2,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/app/modele/login';
 import { Configuration } from 'src/app/modele/configuration/configuration';
-import { Config } from 'protractor';
 import { ConfigurationService } from '../config/configuration.service';
 
 
@@ -15,11 +14,8 @@ export class LoginService {
   login: Login;
   config: Configuration;
 
-  constructor(private configService: ConfigurationService, private httpClient: HttpClient) {
-    this.configService.getConfig()
-      .subscribe((data: Configuration) => {
-        this.config = data;
-      });
+  constructor(private httpClient: HttpClient) {
+    this.config = new Configuration();
   }
 
   public async connexion(login: Login): Promise<boolean> {

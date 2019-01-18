@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { CrossFieldErrorMatcher, confirmPasswordValidator } from 'src/app/validators/form.validators';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class InscriptionComponent implements OnInit {
 
-  connexionForm: FormGroup;
+  inscriptionForm: FormGroup;
+  errorMatcher: CrossFieldErrorMatcher;
   submitted = false;
   hide = true;
   loading = false;
@@ -17,7 +19,10 @@ export class InscriptionComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.connexionForm = this.formBuilder.group({
+
+    this.errorMatcher = new CrossFieldErrorMatcher();
+
+    this.inscriptionForm = this.formBuilder.group({
       email: ['', [
           Validators.required,
           Validators.email
@@ -25,7 +30,6 @@ export class InscriptionComponent implements OnInit {
       ],
       nom: ['', [
           Validators.required,
-          Validators.email
         ]
       ],
       prenom: ['', [
@@ -38,20 +42,22 @@ export class InscriptionComponent implements OnInit {
       ],
       password: ['', [
           Validators.required,
-          Validators.minLength(6)
         ]
       ],
       confirmation: ['', [
           Validators.required,
-          Validators.minLength(6)
         ]
       ]
-    });
+    }, { validator: confirmPasswordValidator });
+
   }
 
-  get form() { return this.connexionForm.controls; }
-
   onSubmit() {
+
+    console.log(this.inscriptionForm);
+    console.log(this.inscriptionForm.invalid);
+
+    /*
     this.submitted = true;
     this.loading = true;
 
@@ -61,6 +67,7 @@ export class InscriptionComponent implements OnInit {
     }
 
     alert('SUCCESS!! :-)');
+    */
   }
 
 }
