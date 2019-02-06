@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
-import { 
+import {
   CrossFieldErrorMatcher,
   confirmPasswordValidator,
   uniqueMailValidator } from 'src/app/validators/form.validators';
