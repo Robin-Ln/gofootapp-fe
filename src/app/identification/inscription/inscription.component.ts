@@ -3,7 +3,8 @@ import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from
 import {
   CrossFieldErrorMatcher,
   confirmPasswordValidator,
-  uniqueMailValidator } from 'src/app/validators/form.validators';
+  uniqueMailValidator, 
+  MustMatch} from 'src/app/validators/form.validators';
 import { InscriptionService } from 'src/app/service/inscription/inscription.service';
 import { Utilisateur } from 'src/app/modele/utilisateur';
 import { Router } from '@angular/router';
@@ -29,8 +30,6 @@ export class InscriptionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.errorMatcher = new CrossFieldErrorMatcher();
 
     this.inscriptionForm = this.formBuilder.group({
       email: ['', [
@@ -60,7 +59,7 @@ export class InscriptionComponent implements OnInit {
           Validators.required,
         ]
       ]
-    }, { validator: confirmPasswordValidator });
+    }, { validator: MustMatch('password', 'confirmation') } );
 
   }
 

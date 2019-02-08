@@ -81,13 +81,12 @@
                     placeholder="Confirmation" 
                     [type]="hide ? 'password' : 'text'" 
                     formControlName="confirmation" 
-                    [errorStateMatcher]="errorMatcher" 
                     required>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="inscriptionForm.get('confirmation').hasError('required')">
                         password is <strong>required</strong>
                     </mat-error>
-                    <mat-error *ngIf="inscriptionForm.hasError('confirmPassword')">
+                    <mat-error *ngIf="inscriptionForm.get('confirmation').hasError('mustMatch')">
                         Passwords do not match!
                     </mat-error>
                 </mat-form-field>
