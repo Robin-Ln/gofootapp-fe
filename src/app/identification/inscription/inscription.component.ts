@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import {
-  CrossFieldErrorMatcher,
-  confirmPasswordValidator,
-  uniqueMailValidator, 
+  uniqueMailValidator,
   MustMatch} from 'src/app/validators/form.validators';
 import { InscriptionService } from 'src/app/service/inscription/inscription.service';
 import { Utilisateur } from 'src/app/modele/utilisateur';
@@ -18,7 +16,6 @@ import { Router } from '@angular/router';
 export class InscriptionComponent implements OnInit {
 
   inscriptionForm: FormGroup;
-  errorMatcher: CrossFieldErrorMatcher;
   submitted = false;
   hide = true;
   loading = false;
