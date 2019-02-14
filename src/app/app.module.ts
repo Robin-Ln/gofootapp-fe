@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -29,13 +32,15 @@ import { InscriptionComponent } from './identification/inscription/inscription.c
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './service/login/login.service';
 import { InscriptionService } from './service/inscription/inscription.service';
+import { PagePlanningComponent } from './pages/page-planning/page-planning.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    PagePlanningComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,12 @@ import { InscriptionService } from './service/inscription/inscription.service';
     FormsModule,
     ReactiveFormsModule,
     // Http
-    HttpClientModule
+    HttpClientModule,
+    // Calendar
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [
     LoginService,
