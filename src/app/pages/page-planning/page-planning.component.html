@@ -2,7 +2,57 @@
   page-planning works!
 </p>
 
-<mwl-calendar-month-view
-  [viewDate]="viewDate"
-  [events]="events">
-</mwl-calendar-month-view>
+<div class="row text-center">
+  <div class="col-md-4">
+    
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(typeCalendarView + 'ViewTitle'):'fr-FR' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="typeCalendarView = CalendarView.Month"
+        [class.active]="typeCalendarView === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="typeCalendarView = CalendarView.Week"
+        [class.active]="typeCalendarView === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="typeCalendarView = CalendarView.Day"
+        [class.active]="typeCalendarView === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngSwitch]="typeCalendarView">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-day-view>
+</div>
