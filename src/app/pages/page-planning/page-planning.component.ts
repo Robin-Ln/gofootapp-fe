@@ -37,6 +37,8 @@ export class PagePlanningComponent implements OnInit {
 
   viewDate: Date = new Date();
 
+  activeDayIsOpen: Boolean = true;
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
