@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent } from 'calendar-utils';
+import { CalendarEvent, DAYS_OF_WEEK } from 'calendar-utils';
 
 import {
   startOfDay,
@@ -10,6 +10,9 @@ import {
 
 import { CalendarView } from 'angular-calendar';
 
+/*
+ * Constantes
+ */
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -32,13 +35,16 @@ const colors: any = {
 })
 export class PagePlanningComponent implements OnInit {
 
+  /*
+   * Attributs
+   */
   typeCalendarView: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
-
   viewDate: Date = new Date();
-
   activeDayIsOpen: Boolean = true;
-
+  locale: String = 'fr-FR';
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -47,24 +53,16 @@ export class PagePlanningComponent implements OnInit {
     }
   ];
 
+  /*
+   * Constructeur
+   */
   constructor() { }
 
+  /*
+   * Methodes
+   */
   ngOnInit() {
     console.log(CalendarView.Month);
-  }
-
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
   }
 
 }
