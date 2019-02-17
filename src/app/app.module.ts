@@ -18,7 +18,8 @@ import {
   MatMenuModule,
   MatCardModule,
   MatListModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDialogModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
@@ -30,6 +31,7 @@ import { PagePlanningComponent } from './pages/page-planning/page-planning.compo
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
+import { EventDialogComponent } from './dialogs/event-dialog/event-dialog.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -39,7 +41,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     AppComponent,
     ConnexionComponent,
     InscriptionComponent,
-    PagePlanningComponent
+    PagePlanningComponent,
+    EventDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
+    MatDialogModule,
     // Flex Layout
     FlexLayoutModule,
     // Forms
@@ -77,6 +81,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     LoginService,
     InscriptionService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EventDialogComponent]
 })
 export class AppModule { }
