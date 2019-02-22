@@ -19,8 +19,10 @@ import {
   MatCardModule,
   MatListModule,
   MatGridListModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTabsModule,
 } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
 import { InscriptionComponent } from './identification/inscription/inscription.component';
@@ -32,6 +34,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import { EventDialogComponent } from './dialogs/event-dialog/event-dialog.component';
+import { ClubService } from './service/club/club.service';
+import { ClubsComponent } from './page/clubs/clubs.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -42,7 +46,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     ConnexionComponent,
     InscriptionComponent,
     PagePlanningComponent,
-    EventDialogComponent
+    EventDialogComponent,
+    ClubsComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     MatListModule,
     MatGridListModule,
     MatDialogModule,
+    MatTabsModule,
+    MatExpansionModule,
     // Flex Layout
     FlexLayoutModule,
     // Forms
@@ -79,7 +86,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
   ],
   providers: [
     LoginService,
-    InscriptionService
+    InscriptionService,
+    ClubService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [EventDialogComponent]

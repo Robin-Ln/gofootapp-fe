@@ -4,12 +4,14 @@ import { ConnexionComponent } from './identification/connexion/connexion.compone
 import { InscriptionComponent } from './identification/inscription/inscription.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PagePlanningComponent } from './pages/page-planning/page-planning.component';
+import { ClubsComponent } from './page/clubs/clubs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'connexion', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent},
-  { path: 'planning', component: PagePlanningComponent}
+  { path: 'planning', component: PagePlanningComponent},
+  { path: 'club', component: ClubsComponent},
 ];
 
 @NgModule({
