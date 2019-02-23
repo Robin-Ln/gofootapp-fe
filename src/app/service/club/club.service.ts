@@ -14,19 +14,19 @@ export class ClubService  {
   constructor(private httpClient: HttpClient) {
     this.config = new Configuration();
   }
-  
+
   public getListeClubNonAdherer(id : Number){
     return this.httpClient
-      .post<Club[]>(this.config.serveurUrl+this.config.clubNonAdhererUrl,id);      
+      .post<Club[]>(this.config.serveurUrl + this.config.clubNonAdhererUrl, id);
   }
 
-  public getListeClubAdherer(id : Number){
+  public getListeClubAdherer(id: Number) {
     return this.httpClient
-      .post<Club[]>(this.config.serveurUrl+this.config.clubAdhererUrl,id);      
+      .post<Club[]>(this.config.serveurUrl + this.config.clubAdhererUrl, id);
   }
 
-  public rejoindreClub(inscriptionClub :InscriptionClub){
+  public rejoindreClub(inscriptionClub: InscriptionClub) {
     return this.httpClient
-      .post<Boolean>(this.config.serveurUrl+this.config.rejoindreClubUrl,inscriptionClub);      
+      .post<Boolean>(this.config.serveurUrl + this.config.rejoindreClubUrl, inscriptionClub);
   }
 }
