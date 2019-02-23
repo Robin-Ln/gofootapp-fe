@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ClubsComponent implements OnInit {
   clubs: Club[];
   retour: Boolean;
-  constructor(private clubService: ClubService,private router: Router) {
+  constructor(private clubService: ClubService, private router: Router) {
   }
 
   ngOnInit() {
@@ -22,19 +22,19 @@ export class ClubsComponent implements OnInit {
   }
 
   getRejoindreClub() {
-    this.clubs=[];
+    this.clubs = [];
     this.clubService.getListeClubNonAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
   getMesClub() {
-    this.clubs=[];
+    this.clubs = [];
     this.clubService.getListeClubAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
-  inscriptionClub(idc: Number,idu :Number){
-    const inscriptionClub: InscriptionClub=new InscriptionClub();
-    inscriptionClub.idClub=idc;
-    inscriptionClub.idUtilisateur=idu;
+  inscriptionClub(idc: Number, idu: Number) {
+    const inscriptionClub: InscriptionClub = new InscriptionClub();
+    inscriptionClub.idClub = idc;
+    inscriptionClub.idUtilisateur = idu;
     this.clubService.rejoindreClub(inscriptionClub).subscribe(data => { this.retour = data; });
     this.getRejoindreClub();
   }
