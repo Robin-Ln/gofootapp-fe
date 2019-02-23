@@ -8,10 +8,11 @@ import { CalendarEvent } from 'calendar-utils';
 })
 export class EvenementService {
 
-  constructor(
-    private config: Configuration,
-    private httpClient: HttpClient
-    ) {}
+  private config: Configuration;
+
+  constructor(private httpClient: HttpClient) {
+    this.config = new Configuration;
+  }
 
 
   public async getEvenements(): Promise<CalendarEvent[]> {

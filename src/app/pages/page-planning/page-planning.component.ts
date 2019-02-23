@@ -46,18 +46,24 @@ export class PagePlanningComponent implements OnInit {
   locale: String = 'fr-FR';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
-  events: CalendarEvent[];
+  events: CalendarEvent[] = [
+  ];
 
   /*
    * Constructeur
    */
-  constructor(private service: EvenementService) { }
+  constructor(private serivce: EvenementService) { }
 
   /*
    * Methodes
    */
   async ngOnInit() {
-    this.events = await this.service.getEvenements();
+    const res: CalendarEvent[] = await this.serivce.getEvenements();
+    res.forEach(event => {
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
+    });
+    this.events = res;
   }
 
 }
