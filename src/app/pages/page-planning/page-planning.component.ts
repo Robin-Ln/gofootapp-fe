@@ -46,8 +46,7 @@ export class PagePlanningComponent implements OnInit {
   locale: String = 'fr-FR';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
-  events: CalendarEvent[] = [
-  ];
+  events: CalendarEvent[] = [];
 
   /*
    * Constructeur
