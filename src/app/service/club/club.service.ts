@@ -15,7 +15,7 @@ export class ClubService  {
     this.config = new Configuration();
   }
 
-  public getListeClubNonAdherer(id : Number){
+  public getListeClubNonAdherer(id: Number) {
     return this.httpClient
       .post<Club[]>(this.config.serveurUrl + this.config.clubNonAdhererUrl, id);
   }
