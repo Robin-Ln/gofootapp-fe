@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Club } from 'src/app/modele/club';
 import { ClubService } from 'src/app/service/club/club.service';
 import { Router } from '@angular/router';
-import { InscriptionClub } from 'src/app/modele/inscriptionclub';
+import { InscriptionAuClub } from 'src/app/modele/InscriptionAuClub';
 
 @Component({
   selector: 'app-clubs',
@@ -32,7 +32,7 @@ export class ClubsComponent implements OnInit {
   }
 
   inscriptionClub(idc: Number, idu: Number) {
-    const inscriptionClub: InscriptionClub = new InscriptionClub();
+    const inscriptionClub: InscriptionAuClub = new InscriptionAuClub();
     inscriptionClub.idClub = idc;
     inscriptionClub.idUtilisateur = idu;
     this.clubService.rejoindreClub(inscriptionClub).subscribe(data => { this.retour = data; });
