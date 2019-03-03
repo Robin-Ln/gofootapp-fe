@@ -3,6 +3,7 @@ import { Club } from 'src/app/modele/club';
 import { ClubService } from 'src/app/service/club/club.service';
 import { InscriptionClub } from 'src/app/modele/inscriptionClub';
 import { Router } from '@angular/router';
+import { NouveauClub } from 'src/app/modele/nouveauClub';
 
 @Component({
   selector: 'app-clubs',
@@ -31,12 +32,28 @@ export class ClubsComponent implements OnInit {
     this.clubService.getListeClubAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
-  inscriptionClub(idc: Number,idu :Number){
+  async inscriptionClub(idc: Number,idu :Number){
     const inscriptionClub: InscriptionClub=new InscriptionClub();
     inscriptionClub.idClub=idc;
     inscriptionClub.idUtilisateur=idu;
-    this.clubService.rejoindreClub(inscriptionClub).subscribe(data => { this.retour = data; });
-    this.getRejoindreClub();
+    const retour :Boolean =await this.clubService.rejoindreClub(inscriptionClub);
+    if(retour){
+      this.getRejoindreClub();
+      console.log("a rejoint !")
+    }
+   
+  }
+
+  async nouveauClub(nomClub: String,idu :Number){
+    const nouveauClub: NouveauClub=new NouveauClub();
+    nouveauClub.nom=nomClub;
+    nouveauClub.idUtilisateur=idu;
+    const retour :Boolean =await this.clubService.creeNouveauClub(nouveauClub);
+    if(retour){
+      this.getRejoindreClub();
+      console.log("club Creer!")
+    }
+   
   }
 
   gestionnaireOnglet(event) {

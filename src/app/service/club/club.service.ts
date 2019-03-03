@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular
 import { Configuration } from 'src/app/modele/configuration/configuration';
 import { Club } from 'src/app/modele/club';
 import { InscriptionClub } from 'src/app/modele/inscriptionclub';
+import { NouveauClub } from 'src/app/modele/nouveauClub';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,31 @@ export class ClubService  {
       .post<Club[]>(this.config.serveurUrl+this.config.clubAdhererUrl,id);      
   }
 
-  public rejoindreClub(inscriptionClub :InscriptionClub){
+  public  async rejoindreClub(inscriptionClub :InscriptionClub){
     return this.httpClient
-      .post<Boolean>(this.config.serveurUrl+this.config.rejoindreClubUrl,inscriptionClub);      
+      .post<Boolean>(this.config.serveurUrl + this.config.rejoindreClubUrl, inscriptionClub)
+      .toPromise()
+      .then((result: Boolean) => {
+        return result;
+      })
+      .catch(error => {
+        console.error('InscriptionService error ', error);
+        return false;
+      }); 
   }
+
+  public async creeNouveauClub(nouveauClub : NouveauClub){
+    return this.httpClient
+    .post<Boolean>(this.config.serveurUrl + this.config.rejoindreClubUrl, nouveauClub)
+    .toPromise()
+    .then((result: Boolean) => {
+      return result;
+    })
+    .catch(error => {
+      console.error('InscriptionService error ', error);
+      return false;
+    }); 
+  }
+
+  
 }
