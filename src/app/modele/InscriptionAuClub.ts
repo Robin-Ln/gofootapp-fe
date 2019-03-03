@@ -1,4 +1,4 @@
-export class InscriptionClub {
+export class InscriptionAuClub {
     idUtilisateur: Number;
     idClub: Number;
 }

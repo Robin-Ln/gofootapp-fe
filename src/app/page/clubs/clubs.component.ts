@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Club } from 'src/app/modele/club';
 import { ClubService } from 'src/app/service/club/club.service';
-import { InscriptionClub } from 'src/app/modele/inscriptionClub';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { NouveauClub } from 'src/app/modele/nouveauClub';
+=======
+import { InscriptionAuClub } from 'src/app/modele/InscriptionAuClub';
+>>>>>>> branch 'master' of https://github.com/Robin-Ln/gofootapp-fe.git
 
 @Component({
   selector: 'app-clubs',
@@ -14,7 +17,7 @@ import { NouveauClub } from 'src/app/modele/nouveauClub';
 export class ClubsComponent implements OnInit {
   clubs: Club[];
   retour: Boolean;
-  constructor(private clubService: ClubService,private router: Router) {
+  constructor(private clubService: ClubService, private router: Router) {
   }
 
   ngOnInit() {
@@ -23,15 +26,16 @@ export class ClubsComponent implements OnInit {
   }
 
   getRejoindreClub() {
-    this.clubs=[];
+    this.clubs = [];
     this.clubService.getListeClubNonAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
   getMesClub() {
-    this.clubs=[];
+    this.clubs = [];
     this.clubService.getListeClubAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
+<<<<<<< HEAD
   async inscriptionClub(idc: Number,idu :Number){
     const inscriptionClub: InscriptionClub=new InscriptionClub();
     inscriptionClub.idClub=idc;
@@ -54,6 +58,14 @@ export class ClubsComponent implements OnInit {
       console.log("club Creer!")
     }
    
+=======
+  inscriptionClub(idc: Number, idu: Number) {
+    const inscriptionClub: InscriptionAuClub = new InscriptionAuClub();
+    inscriptionClub.idClub = idc;
+    inscriptionClub.idUtilisateur = idu;
+    this.clubService.rejoindreClub(inscriptionClub).subscribe(data => { this.retour = data; });
+    this.getRejoindreClub();
+>>>>>>> branch 'master' of https://github.com/Robin-Ln/gofootapp-fe.git
   }
 
   gestionnaireOnglet(event) {

@@ -9,6 +9,7 @@ import {
 } from 'date-fns';
 
 import { CalendarView } from 'angular-calendar';
+import { EvenementService } from 'src/app/service/evenement/evenement.service';
 
 /*
  * Constantes
@@ -45,24 +46,23 @@ export class PagePlanningComponent implements OnInit {
   locale: String = 'fr-FR';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event'
-    }
-  ];
+  events: CalendarEvent[] = [];
 
   /*
    * Constructeur
    */
-  constructor() { }
+  constructor(private serivce: EvenementService) { }
 
   /*
    * Methodes
    */
-  ngOnInit() {
-    console.log(CalendarView.Month);
+  async ngOnInit() {
+    const res: CalendarEvent[] = await this.serivce.getEvenements();
+    res.forEach(event => {
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
+    });
+    this.events = res;
   }
 
 }
