@@ -24,21 +24,49 @@
               Nouveau Club
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="Nom du club">
-          </mat-form-field>
-          <mat-panel-description>
-          </mat-panel-description>
-          <mat-panel-description>
-            <button mat-raised-button color="accent" type="button">Crée le club</button>
-          </mat-panel-description>
+          <form [formGroup]="nouveauClubForm" (ngSubmit)="nouveauClub()">
+            <mat-form-field >
+              <input matInput placeholder="Nom du club" formControlName="nomClub" required>
+            </mat-form-field>
+            <mat-panel-description>
+              <button mat-raised-button color="accent" [disabled]="loading&&!nouveauClubForm.valid">Crée le club</button>
+            </mat-panel-description>
+          </form>
+          
         </mat-expansion-panel>
       </mat-accordion>
     </mat-tab>
     <mat-tab label="Mes clubs">
-      <mat-list>
-        <mat-list-item *ngFor="let club of clubs">{{club.nom}}</mat-list-item>
-      </mat-list>
+      <mat-expansion-panel *ngFor="let club of clubs">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{club.nom}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          Nombre d'adherent : {{club.nombreAdherent}}
+        </mat-panel-description>
+        <mat-list>
+          <h3 mat-subheader>Equipe</h3>
+          <mat-list-item  *ngFor="let equipe of club.equipe">
+              <mat-panel-description>
+                {{equipe.nom}}
+                </mat-panel-description>
+                <mat-panel-description>
+                  Nombre d'adherent : {{equipe.nombreUtilisateur}}
+                </mat-panel-description>
+            <mat-icon mat-list-icon>group</mat-icon>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+          <form [formGroup]="nouvelleEquipeForm" (ngSubmit)="onSubmit()" layout="row" layout-align="center center"> 
+              <mat-form-field >
+                <input matInput placeholder="Nom de l'equipe" formControlName="nomEquipe" required>
+              </mat-form-field>
+                <button mat-raised-button color="accent" [disabled]="loading">Crée l'équipe</button>
+            </form>
+        </mat-list>
+
+      </mat-expansion-panel>
     </mat-tab>
     <mat-tab label="Mes équipes "> </mat-tab>
   </mat-tab-group>
