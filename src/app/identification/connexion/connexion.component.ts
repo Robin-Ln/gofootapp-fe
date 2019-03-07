@@ -22,10 +22,15 @@ export class ConnexionComponent implements OnInit {
       private formBuilder: FormBuilder,
       private loginService: LoginService,
       private router: Router,
-      private cookieService: CookieService
+      private cookieService: CookieService,
     ) { }
 
   ngOnInit(): void {
+
+    if (this.loginService.isLoggedIn()) {
+      this.router.navigate(['/club']);
+    }
+
     this.connexionForm = this.formBuilder.group({
       mail: ['', [
         Validators.required,
