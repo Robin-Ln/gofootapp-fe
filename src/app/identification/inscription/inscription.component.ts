@@ -51,6 +51,7 @@ export class InscriptionComponent implements OnInit {
       ],
       telephone: ['', [
           Validators.required,
+          Validators.pattern('[0-9]{10}')
         ]
       ],
       password: ['', [
