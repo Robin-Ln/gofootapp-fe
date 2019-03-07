@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Login } from 'src/app/modele/login';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
+import { CookieService } from 'ng2-cookies';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ConnexionComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private loginService: LoginService,
-      private router: Router
+      private router: Router,
+      private cookieService: CookieService
     ) { }
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ export class ConnexionComponent implements OnInit {
     const login: Login = this.connexionForm.value;
     const res: Boolean = await this.loginService.connexion(login);
     if (res) {
-      this.loginService.isLoggedIn = true;
+      this.cookieService.set('isLoggedIn', 'true');
       this.loginService.login = login;
       this.router.navigate(['/inscription']);
     }
