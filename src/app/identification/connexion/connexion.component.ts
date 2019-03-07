@@ -38,8 +38,7 @@ export class ConnexionComponent implements OnInit {
         ]
       ],
       password: ['', [
-        Validators.required,
-        Validators.minLength(6)
+        Validators.required
         ]
       ]
     });
