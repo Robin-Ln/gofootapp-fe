@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+
+
+	<div class="container text-center espacetitre">
+		<h2>Gestion d'équipe pour le prochain match</h2>
+	</div>
+
+	<!-- Division de la liste des joueurs récupérés une liste par poste -->
+	<div class="containerjoueurs">
+		<label>Attaquants : </label>
+		<div cdkDropList id="listofattaquant" class="example-list" [cdkDropListData]="attaquants"
+			[cdkDropListConnectedTo]="['listatt','listattd','listattg']"
+			(cdkDropListDropped)="drop($event)">
+			<div class="example-box" *ngFor="let joueur of attaquants" cdkDrag>{{joueur}}</div>
+		</div>
+		<label>Milieux : </label>
+		<div cdkDropList id="listofmilieu" class="example-list" [cdkDropListData]="milieux"
+			[cdkDropListConnectedTo]="['listmoc','listmdcg','listmdcd']"
+			(cdkDropListDropped)="drop($event)">
+			<div class="example-box" *ngFor="let joueur of milieux" cdkDrag>{{joueur}}</div>
+		</div>
+		<label>Defenseurs : </label>
+		<div cdkDropList id="listofdefenseur" class="example-list" [cdkDropListData]="defenseurs"
+			[cdkDropListConnectedTo]="['listdfg','listdfcg','listdfcd','listdfd']"
+			(cdkDropListDropped)="drop($event)">
+			<div class="example-box" *ngFor="let joueur of defenseurs" cdkDrag>{{joueur}}</div>
+		</div>
+		<label>Gardiens : </label>
+		<div cdkDropList id="listofgardien" class="example-list" [cdkDropListData]="gardiens"
+			[cdkDropListConnectedTo]="['listgd']"
+			(cdkDropListDropped)="drop($event)">
+			<div class="example-box" *ngFor="let joueur of gardiens" cdkDrag>{{joueur}}</div>
+		</div>
+	</div>
+
+	<div class="terrain">
+
+		<!-- L'attaquant est représenté dans cette div-->
+
+		<div class="maillotlistatt">
+			<img src="assets/maillot.png" width="10%" height="10%" max-width="10%" max-heigth="10%"
+				class="imgmaillotatt" />
+			<div cdkDropList id="listatt" class="list-of-att" [cdkDropListData]="attaquant"
+				[cdkDropListConnectedTo]="['listofattaquant','listatt','listattd','listattg']"
+				(cdkDropListDropped)="drop($event) ">
+				<div class="att-box" *ngFor="let att of attaquant" cdkDrag>{{attaquant}}</div>
+			</div>
+		</div>
+
+		<!-- Division des milieux de terrain offensif. On trouvera le moc et les attaquants axiaux-->
+		<div class="container">
+
+
+			<div class="maillotlistattg">
+				<img src="assets/maillot.png" width="26%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listattg" class="list-of-attg" [cdkDropListData]="attg"
+					[cdkDropListConnectedTo]="['listofattaquant','listatt','listattd','listattg']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of attg" cdkDrag>{{attg}}</div>
+				</div>
+			</div>
+
+
+			<div class="maillotlistmoc">
+				<img src="assets/maillot.png" width="26%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listmoc" class="list-of-moc" [cdkDropListData]="moc"
+					[cdkDropListConnectedTo]="['listofmilieu','listmoc','listmdcg','listmdcd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of moc" cdkDrag>{{moc}}</div>
+				</div>
+			</div>
+
+
+			<div class="maillotlistattd">
+				<img src="assets/maillot.png" width="26%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listattd" class="list-of-attd" [cdkDropListData]="attd"
+					[cdkDropListConnectedTo]="['listofattaquant','listatt','listattd','listattg']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of attd" cdkDrag>{{attd}}</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Division des milieux de terrain défensifs. On trouvera le milieur defensif gauche et droit-->
+		<div class="containermdc">
+
+
+			<div class="maillotlistmdcg">
+				<img src="assets/maillot.png" width="20%" height="56%" max-width="20%" max-heigth="56%"
+					class="imgmaillot" />
+				<div cdkDropList id="listmdcg" class="list-of-mdcg" [cdkDropListData]="mdcg"
+					[cdkDropListConnectedTo]="['listofmilieu','listmoc','listmdcg','listmdcd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of mdcg" cdkDrag>{{mdcg}}</div>
+				</div>
+			</div>
+
+
+			<div class="maillotlistmdcd">
+				<img src="assets/maillot.png" width="20%" height="56%" max-width="20%" max-heigth="56%"
+					class="imgmaillot" />
+				<div cdkDropList id="listmdcd" class="list-of-mdcd" [cdkDropListData]="mdcd"
+					[cdkDropListConnectedTo]="['listofmilieu','listmoc','listmdcg','listmdcd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of mdcd" cdkDrag>{{mdcd}}</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<!-- Division des défenseurs . On trouvera les defenseurs axiaux et centraux -->
+		<div class="containerdef">
+
+
+			<div class="maillotlistdfg">
+				<img src="assets/maillot.png" width="30%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listdfg" class="list-of-dfg" [cdkDropListData]="dfg"
+					[cdkDropListConnectedTo]="['listofdefenseur','listdfg','listdfcg','listdfcd','listdfd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of dfg" cdkDrag>{{dfg}}</div>
+				</div>
+			</div>
+
+
+			<div class="maillotlistdfcg">
+				<img src="assets/maillot.png" width="30%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listdfcg" class="list-of-dfcg" [cdkDropListData]="dfcg"
+					[cdkDropListConnectedTo]="['listofdefenseur','listdfg','listdfcg','listdfcd','listdfd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of dfcg" cdkDrag>{{dfcg}}</div>
+				</div>
+			</div>
+
+
+			<div class="maillotlistdfcd">
+				<img src="assets/maillot.png" width="30%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listdfcd" class="list-of-dfcd" [cdkDropListData]="dfcd"
+					[cdkDropListConnectedTo]="['listofdefenseur','listdfg','listdfcg','listdfcd','listdfd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of dfcd" cdkDrag>{{dfcd}}</div>
+				</div>
+			</div>
+
+			<div class="maillotlistdfd">
+				<img src="assets/maillot.png" width="30%" height="60%" max-width="26%" max-heigth="20%"
+					class="imgmaillot" />
+				<div cdkDropList id="listdfd" class="list-of-dfd" [cdkDropListData]="dfd"
+					[cdkDropListConnectedTo]="['listofdefenseur','listdfg','listdfcg','listdfcd','listdfd']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of dfd" cdkDrag>{{dfd}}</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Division du gardien -->
+		<div class="containergardien">
+
+			<div class="maillotlistgd">
+				<img src="assets/maillot.png" width="12%" height="60%" max-width="12%" max-heigth="60%"
+					class="imgmaillot" />
+				<div cdkDropList id="listgd" class="list-of-gd" [cdkDropListData]="gd"
+					[cdkDropListConnectedTo]="['listofgardien']"
+					(cdkDropListDropped)="drop($event) ">
+					<div class="att-box" *ngFor="let att of gd" cdkDrag>{{gd}}</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>
