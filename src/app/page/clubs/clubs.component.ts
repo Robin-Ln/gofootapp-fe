@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder,FormControl } from '@angular/forms';
 import { Club } from 'src/app/modele/club';
 import { ClubService } from 'src/app/service/club/club.service';
 import { Router } from '@angular/router';
 import { InscriptionAuClub } from 'src/app/modele/InscriptionAuClub';
-import {NouveauClub} from 'src/app/modele/nouveauClub'
-
 
 @Component({
   selector: 'app-clubs',
@@ -16,23 +13,12 @@ import {NouveauClub} from 'src/app/modele/nouveauClub'
 export class ClubsComponent implements OnInit {
   clubs: Club[];
   retour: Boolean;
-  nouveauClubForm: FormGroup;
-  nouvelleEquipeForm: FormGroup;
-  loading: Boolean = false;
-
-  constructor(private clubService: ClubService, private formBuilder: FormBuilder,private router: Router) {
+  constructor(private clubService: ClubService, private router: Router) {
   }
 
   ngOnInit() {
     console.log('Le composant a fini son initialisation');
     this.getRejoindreClub();
-    this.nouveauClubForm=this.formBuilder.group({
-      nomClub : new FormControl('',Validators.compose([Validators.minLength(3),Validators.required]))
-    });
-
-    this.nouvelleEquipeForm=new FormGroup({
-      nomEquipe : new FormControl('')
-    });
   }
 
   getRejoindreClub() {
@@ -45,36 +31,12 @@ export class ClubsComponent implements OnInit {
     this.clubService.getListeClubAdherer(3).subscribe(data => { this.clubs = data; });
   }
 
-  async inscriptionClub(idc: Number,idu :Number){
-    const inscriptionClub: InscriptionAuClub=new InscriptionAuClub();
-    inscriptionClub.idClub=idc;
-    inscriptionClub.idUtilisateur=idu;
-    const retour :Boolean =await this.clubService.rejoindreClub(inscriptionClub);
-    if(retour){
-      this.getRejoindreClub();
-      console.log("a rejoint !")
-    }
-   
-  }
-
-  async nouveauClub() {
-    if((this.nouveauClubForm.invalid)||((this.nouveauClubForm.value.nomClub).split(' ').join('').length<3)){
-      console.log("Nouveau club invalide ");
-      return;
-    }
-    this.loading = true;
-    const nouveauClub: NouveauClub=new NouveauClub();
-    nouveauClub.nom=this.nouveauClubForm.value.nomClub;
-    nouveauClub.idUtilisateur=3;
-    const retour :Boolean =await this.clubService.creeNouveauClub(nouveauClub);
-    if(retour){
-      this.getRejoindreClub();
-      console.log("club Creer!");
-     
-    }else{
-      console.log("ERREUR :Creation club impossible ");
-    }
-    this.loading = false;
+  inscriptionClub(idc: Number, idu: Number) {
+    const inscriptionClub: InscriptionAuClub = new InscriptionAuClub();
+    inscriptionClub.idClub = idc;
+    inscriptionClub.idUtilisateur = idu;
+    this.clubService.rejoindreClub(inscriptionClub).subscribe(data => { this.retour = data; });
+    this.getRejoindreClub();
   }
 
   gestionnaireOnglet(event) {
