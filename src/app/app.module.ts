@@ -68,6 +68,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     // Material animation
     BrowserAnimationsModule,
     // Material componet
+    DragDropModule,
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
