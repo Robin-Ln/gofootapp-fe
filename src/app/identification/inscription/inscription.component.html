@@ -44,7 +44,11 @@
             </div>
             <div class="col-2">
                 <mat-form-field>
-                    <input matInput placeholder="Telephone" formControlName="telephone" required>
+                    <input matInput type="number" placeholder="Telephone" formControlName="telephone" class="example-right-align" required>
+                    <span matPrefix>+33 &nbsp;</span>
+                    <mat-error *ngIf="inscriptionForm.get('telephone').hasError('pattern')">
+                        Il faut 10 caractères
+                    </mat-error>
                     <mat-error *ngIf="inscriptionForm.get('telephone').hasError('required')">
                             Telephone is <strong>required</strong>
                     </mat-error>
