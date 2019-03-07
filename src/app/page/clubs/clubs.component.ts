@@ -3,8 +3,9 @@ import { Validators, FormGroup, FormBuilder,FormControl } from '@angular/forms';
 import { Club } from 'src/app/modele/club';
 import { ClubService } from 'src/app/service/club/club.service';
 import { Router } from '@angular/router';
-import { NouveauClub } from 'src/app/modele/nouveauClub';
 import { InscriptionAuClub } from 'src/app/modele/InscriptionAuClub';
+import {NouveauClub} from 'src/app/modele/nouveauClub'
+
 
 @Component({
   selector: 'app-clubs',

@@ -26,11 +26,19 @@ export class ClubService  {
       .post<Club[]>(this.config.serveurUrl + this.config.clubAdhererUrl, id);
   }
 
-  public  async rejoindreClub(inscriptionClub :InscriptionAuClub){
-    return this.httpClient.post<Boolean>(this.config.serveurUrl + this.config.rejoindreClubUrl, inscriptionClub);
-  }
+  public rejoindreClub(inscriptionClub: InscriptionAuClub) {
+    return this.httpClient
+    .post<Boolean>(this.config.serveurUrl + this.config.rejoindreClubUrl, inscriptionClub)
+    .toPromise()
+    .then((result: Boolean) => {
+      return result;
+    })
+    .catch(error => {
+      console.error('InscriptionService error ', error);
+      return false;
+    }); }
 
-  public async creeNouveauClub(nouveauClub : NouveauClub){
+  public async creeNouveauClub(nouveauClub: NouveauClub) {
     return this.httpClient
     .post<Boolean>(this.config.serveurUrl + this.config.nouveauClubUrl, nouveauClub)
     .toPromise()
@@ -40,8 +48,6 @@ export class ClubService  {
     .catch(error => {
       console.error('InscriptionService error ', error);
       return false;
-    }); 
+    });
   }
-
-  
 }
