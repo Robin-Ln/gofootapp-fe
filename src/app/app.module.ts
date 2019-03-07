@@ -6,6 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {A11yModule} from '@angular/cdk/a11y';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MaterialModule} from './gestionequipe/gestionequipematerials';
+
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -22,10 +30,12 @@ import {
   MatDialogModule,
   MatTabsModule,
 } from '@angular/material';
+
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './identification/connexion/connexion.component';
 import { InscriptionComponent } from './identification/inscription/inscription.component';
+import { GestionequipeComponent } from './gestionequipe/gestionequipe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './service/login/login.service';
 import { InscriptionService } from './service/inscription/inscription.service';
@@ -48,6 +58,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     PagePlanningComponent,
     EventDialogComponent,
     ClubsComponent,
+    GestionequipeComponent,
   ],
   imports: [
     BrowserModule,
