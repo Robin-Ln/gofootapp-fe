@@ -60,6 +60,7 @@ export class ConnexionComponent implements OnInit {
     const res: Boolean = await this.loginService.connexion(login);
     if (res) {
       this.cookieService.set('isLoggedIn', 'true');
+      this.cookieService.set('user', login.mail);
       this.loginService.login = login;
       this.router.navigate(['/club']);
     }
