@@ -6,7 +6,6 @@ import {
 import { InscriptionService } from 'src/app/service/inscription/inscription.service';
 import { Utilisateur } from 'src/app/modele/utilisateur';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/service/login/login.service';
 
 
 @Component({
@@ -24,14 +23,10 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private inscriptionService: InscriptionService,
-    private router: Router,
-    private loginService: LoginService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    if (this.loginService.isLoggedIn()){
-      this.router.navigate(['/club']);
-    }
 
     this.inscriptionForm = this.formBuilder.group({
       email: ['', [

@@ -8,7 +8,7 @@ import { LoginService } from './service/login/login.service';
 })
 export class AppComponent {
   title = 'gofootapp-fe';
-
+  
    constructor(
     private loginService: LoginService
   ) {}

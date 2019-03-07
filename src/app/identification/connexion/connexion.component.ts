@@ -3,7 +3,6 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Login } from 'src/app/modele/login';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
-import { CookieService } from 'ng2-cookies';
 
 
 @Component({
@@ -21,16 +20,10 @@ export class ConnexionComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private loginService: LoginService,
-      private router: Router,
-      private cookieService: CookieService,
+      private router: Router
     ) { }
 
   ngOnInit(): void {
-
-    if (this.loginService.isLoggedIn()) {
-      this.router.navigate(['/club']);
-    }
-
     this.connexionForm = this.formBuilder.group({
       mail: ['', [
         Validators.required,
@@ -60,9 +53,9 @@ export class ConnexionComponent implements OnInit {
     const login: Login = this.connexionForm.value;
     const res: Boolean = await this.loginService.connexion(login);
     if (res) {
-      this.cookieService.set('isLoggedIn', 'true');
+      this.loginService.isLoggedIn = true;
       this.loginService.login = login;
-      this.router.navigate(['/club']);
+      this.router.navigate(['/inscription']);
     }
 
     // Afficher un message d'erreur dans un cadre rouge
