@@ -57,7 +57,7 @@ export class ConnexionComponent implements OnInit {
     if (res) {
       this.cookieService.set('isLoggedIn', 'true');
       this.loginService.login = login;
-      this.router.navigate(['/inscription']);
+      this.router.navigate(['/club']);
     }
 
     // Afficher un message d'erreur dans un cadre rouge
