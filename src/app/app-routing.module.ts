@@ -9,15 +9,17 @@ import { ClubsComponent } from './page/clubs/clubs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'connexion', pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'connexion', component: ConnexionComponent },
+  { path: 'connexion', component: ConnexionComponent},
   { path: 'inscription', component: InscriptionComponent},
-  { path: 'planning', component: PagePlanningComponent},
-  { path: 'club', component: ClubsComponent},
-  { path: 'gestionequipe', component: GestionequipeComponent},
+  { path: 'planning', component: PagePlanningComponent, canActivate: [AuthGuard]},
+  { path: 'club', component: ClubsComponent, canActivate: [AuthGuard]},
+  { path: 'gestionequipe', component: GestionequipeComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor() {}
+}

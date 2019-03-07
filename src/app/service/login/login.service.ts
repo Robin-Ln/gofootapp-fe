@@ -46,4 +46,9 @@ export class LoginService {
   public isLoggedIn(): Boolean {
     return this.cookieService.get('isLoggedIn') === 'true' ? true : false;
   }
+
+  public deconnexion(): Boolean {
+    this.cookieService.set('isLoggedIn', 'false');
+    return false;
+  }
 }
