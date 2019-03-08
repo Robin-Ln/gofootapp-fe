@@ -10,6 +10,15 @@
 
 	<div class="container text-center espacetitre">
 		<h2>Gestion d'équipe pour le prochain match</h2>
+
+		<form class="boutonenregistrer" [formGroup]="gestionequipeForm" (ngSubmit)="enregistrementEquipe()">
+			<div class="row">
+				<div class="col">
+					<button mat-raised-button color="primary" [disabled]="loading">
+						Enregistrer</button>
+				</div>
+			</div>
+		</form>
 	</div>
 
 	<!-- Division de la liste des joueurs récupérés une liste par poste -->

@@ -1,5 +1,5 @@
 export class joueur {
-    idUtilisateur: Number;
+    idUtilisateur: number;
     nom: String;
     prenom: String;
     role: String;

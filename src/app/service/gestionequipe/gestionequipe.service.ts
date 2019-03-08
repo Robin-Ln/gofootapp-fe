@@ -54,4 +54,30 @@ export class GestionEquipeService {
       });
   }
 
+  public async getIdJoueur(nom : String) {
+    return this.httpClient
+      .post<joueur>(this.config.serveurUrl + this.config.getIdOfJoueurUrl, nom)
+      .toPromise()
+      .then((result: any) => {
+        return result;
+      })
+      .catch(error => {
+        console.error('GestionEquipeService error ', error);
+        return null;
+      });
+  }
+
+  public async AjoutEquipe(equipe:number[]) {
+    return this.httpClient
+      .post<Boolean>(this.config.serveurUrl + this.config.enregistrementequipe, equipe)
+      .toPromise()
+      .then((result: any) => {
+        return result;
+      })
+      .catch(error => {
+        console.error('GestionEquipeService error ', error);
+        return false;
+      });
+  }
+
 }

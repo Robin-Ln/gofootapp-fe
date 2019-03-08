@@ -10,6 +10,8 @@ export class Configuration {
     idclubentraineurUrl: string;
     listeJoueurClubUrl: string;
     listeJoueurTerrainUrl: string;
+    getIdOfJoueurUrl : string;
+    enregistrementequipe : string;
     
     constructor() {
         this.serveurUrl = 'http://localhost:8080';
@@ -23,6 +25,8 @@ export class Configuration {
         this.idclubentraineurUrl='/be/clubidentraineur';
         this.listeJoueurClubUrl='/be/getListeJoueurClub';
         this.listeJoueurTerrainUrl='/be/getListeJoueurTerrain';
+        this.getIdOfJoueurUrl='/be/getIdOfJoueur';
+        this.enregistrementequipe='/be/Enregistrementequipe';
     }
 
 }
