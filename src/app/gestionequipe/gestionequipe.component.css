@@ -1,5 +1,6 @@
 html{
   height:100% !important;
+  opacity:50%;
 }
 body{
   height:100% !important;
@@ -270,7 +271,7 @@ section {
 
 .example-box {
   padding: 15px 10px;
-  border-bottom: solid 1px #ccc;
+  border: solid 2px darkblue!important;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
@@ -280,11 +281,12 @@ section {
   cursor: move;
   background: white;
   font-size: 12px;
+  background: lightblue;
 }
 
 .att-box {
   padding: 15px 0px;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 2px darkblue!important;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
@@ -294,6 +296,7 @@ section {
   cursor: move;
   background: white;
   font-size: 8.5px;
+  background: lightblue;
 }
 
 .cdk-drag-preview {
