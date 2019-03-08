@@ -48,6 +48,7 @@ import { ClubService } from './service/club/club.service';
 import { ClubsComponent } from './page/clubs/clubs.component';
 
 import { CookieService } from 'ng2-cookies';
+import { GestionEquipeService } from './service/gestionequipe/gestionequipe.service';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
@@ -102,7 +103,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     LoginService,
     InscriptionService,
     ClubService,
-    CookieService
+    CookieService,
+    GestionEquipeService
   ],
   bootstrap: [AppComponent],
   entryComponents: [EventDialogComponent]

@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { IdClubEntraineur } from '../modele/IdClubEntraineur';
+import { GestionEquipeService } from 'src/app/service/gestionequipe/gestionequipe.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ng2-cookies';
+import { joueur } from '../modele/joueur';
 
 /**
  * @title Drag&Drop sorting
@@ -10,29 +15,163 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 	styleUrls: ['./gestionequipe.component.css']
 })
 
-export class GestionequipeComponent {
+export class GestionequipeComponent implements OnInit{
+
+	constructor(private cookieService : CookieService,private gestionEquipeService: GestionEquipeService, private router: Router) {
+	}
+
+	id : IdClubEntraineur;
+	mail : String;
+	Listofjoueurs : joueur[];
+	ListofjoueurTerrain : joueur[];
+	compte : number;
+
+	ngOnInit() {
+		console.log('Le composant a fini son initialisation');
+
+		// Initialisation de la liste de tout les joueurs 
+		this.getClubEntraineur();
+	}
+
+	async getClubEntraineur(){
+		this.mail = this.cookieService.get("user");
+		console.log(this.mail);
+		this.id = await this.gestionEquipeService.getClubUtilisateur(this.mail);
+		this.getListofJoueur();
+	}
+
+	async getListofJoueur(){
+		this.Listofjoueurs = await this.gestionEquipeService.getListjoueur(this.id.id);
+		this.getListeofJoueurTerrain();
+	}
+
+	async getListeofJoueurTerrain(){
+		this.ListofjoueurTerrain = await this.gestionEquipeService.getListjoueurTerrain(this.id.id);
+		this.doublecheck();
+	}
+
+	doublecheck(){
+		this.ListofjoueurTerrain.forEach(elementjoueurterrain => {
+			this.compte = 0;
+			this.Listofjoueurs.forEach(elementjoueur => {
+				if(elementjoueur.nom == elementjoueurterrain.nom){
+					console.log("match sur" + this.compte);
+					this.Listofjoueurs.splice(this.compte,1);
+				}
+				this.compte++;
+			});
+		});
+		this.moveonalltable();
+	}
+
+	moveonalltable(){
+		this.Listofjoueurs.forEach(element => {
+
+			if(element.role=="AT" || element.role=="ATG" ||element.role=="ATD"){
+				this.attaquants.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="MOC" || element.role=="MDCD" ||element.role=="MDCG"){
+				this.milieux.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="DCD" || element.role=="DCG" ||element.role=="DD" ||element.role=="DG"){
+				this.defenseurs.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role="GD"){
+				this.gardiens.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+		});
+
+		this.moveonalltableterrain();
+	}
+
+	moveonalltableterrain(){
+		this.ListofjoueurTerrain.forEach(element => {
+
+			if(element.role=="AT"){
+				this.attaquant.splice(0,1);
+				this.attaquant.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="ATG"){
+				this.attg.splice(0,1);
+				this.attg.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="ATD"){
+				this.attd.splice(0,1);
+				this.attd.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="MOC"){
+				this.moc.splice(0,1);
+				this.moc.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="MDCD"){
+				this.mdcd.splice(0,1);
+				this.mdcd.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="MDCG"){
+				this.mdcg.splice(0,1);
+				this.mdcg.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="DCD"){
+				this.dfcd.splice(0,1);
+				this.dfcd.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="DCG"){
+				this.dfcg.splice(0,1);
+				this.dfcg.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="DD"){
+				this.dfd.splice(0,1);
+				this.dfd.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="DG"){
+				this.dfg.splice(0,1);
+				this.dfg.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+
+			if(element.role=="GD"){
+				this.gd.splice(0,1);
+				this.gd.push(element.role+"-"+element.nom+" "+element.prenom);
+				return;
+			}
+		});
+	}
 
 	attaquants = [
-		'AT-Paul Herve',
-		'ATG-Gaetan Louarn',
-		'ATD-Alex auau'
 	];
 
 	defenseurs = [
-		'DG-Roger Adrien',
-		'DCG-Aubry Thierry',
-		'DCD-George Pompi',
-		'DD-Dede drouet'
 	];
 
 	milieux = [
-		'MOC-Roger Michel',
-		'MDCG-Claude Benoit',
-		'MDCD-Raul lala'
 	];
 
 	gardiens = [
-		'G-Claude Puel',
 	];
 
 	attaquant = new Array(1);

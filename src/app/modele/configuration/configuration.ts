@@ -7,6 +7,10 @@ export class Configuration {
     rejoindreClubUrl: string;
     nouveauClubUrl: string;
     planningEvenementUrl: string;
+    idclubentraineurUrl: string;
+    listeJoueurClubUrl: string;
+    listeJoueurTerrainUrl: string;
+    
     constructor() {
         this.serveurUrl = 'http://localhost:8080';
         this.loginUrl = '/be/login';
@@ -16,6 +20,9 @@ export class Configuration {
         this.rejoindreClubUrl = '/be/rejoindreClub';
         this.planningEvenementUrl = '/be/planning/evenements';
         this.nouveauClubUrl='/be/nouveauClub';
+        this.idclubentraineurUrl='/be/clubidentraineur';
+        this.listeJoueurClubUrl='/be/getListeJoueurClub';
+        this.listeJoueurTerrainUrl='/be/getListeJoueurTerrain';
     }
 
 }
