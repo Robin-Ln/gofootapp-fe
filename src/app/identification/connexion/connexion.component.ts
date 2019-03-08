@@ -4,6 +4,7 @@ import { Login } from 'src/app/modele/login';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
 import { CookieService } from 'ng2-cookies';
+import { Utilisateur } from 'src/app/modele/utilisateur';
 
 
 @Component({
@@ -63,6 +64,10 @@ export class ConnexionComponent implements OnInit {
       this.cookieService.set('user', login.mail);
       this.loginService.login = login;
       this.router.navigate(['/club']);
+
+      const userId: string = String(await this.loginService.getUser(login.mail)) ;
+      this.cookieService.set('userId', userId);
+      console.log(userId);
     }
 
     // Afficher un message d'erreur dans un cadre rouge

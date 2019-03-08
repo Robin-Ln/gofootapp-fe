@@ -1,5 +1,7 @@
 export class Utilisateur {
 
+    idUtilisateur: Number;
+
     nom: String;
 
     prenom: String;

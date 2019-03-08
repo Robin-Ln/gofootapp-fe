@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular
 import { Login } from 'src/app/modele/login';
 import { Configuration } from 'src/app/modele/configuration/configuration';
 import { CookieService } from 'ng2-cookies';
+import { Utilisateur } from 'src/app/modele/utilisateur';
 
 
 @Injectable({
@@ -20,6 +21,19 @@ export class LoginService {
   public async connexion(login: Login): Promise<boolean> {
     return this.httpClient
       .post<Boolean>(this.config.serveurUrl + this.config.loginUrl, login)
+      .toPromise()
+      .then((result: any) => {
+        return result;
+      })
+      .catch(error => {
+        console.error('ConnexionService error ', error);
+        return false;
+      });
+  }
+
+  public async getUser(mail: String): Promise<Number> {
+    return this.httpClient
+      .post<Number>(this.config.serveurUrl + this.config.loginUrl + '/user', mail)
       .toPromise()
       .then((result: any) => {
         return result;
