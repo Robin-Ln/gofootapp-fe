@@ -31,8 +31,9 @@ export class LoginService {
   }
 
   public async checkLogedIn(): Promise<Boolean> {
+    const mail: String = this.cookieService.get('user');
     return this.httpClient
-      .put<Boolean>(this.config.serveurUrl + this.config.loginUrl + '/' + this.login.mail, null)
+      .put<Boolean>(this.config.serveurUrl + this.config.loginUrl + '/' + mail, null)
       .toPromise()
       .then((result: any) => {
         return result;
