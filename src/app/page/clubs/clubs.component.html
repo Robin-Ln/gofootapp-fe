@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <mat-tab-group (selectedTabChange)="gestionnaireOnglet($event)">
+  <mat-tab-group (selectedTabChange)="gestionnaireOnglet($event)" *ngIf=" serviceLogin.isLoggedIn()">
     <mat-tab label="Rejoindre club ">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let club of clubs">
@@ -13,7 +13,7 @@
             Nombre d'adherent : {{club.nombreAdherent}}
           </mat-panel-description>
           <mat-panel-description>
-            <button mat-raised-button color="accent" (click)="inscriptionClub(club.id,3)"
+            <button mat-raised-button color="accent" (click)="inscriptionClub(club.id,this.userId)"
               type="button">Rejoindre</button>
           </mat-panel-description>
         </mat-expansion-panel>
@@ -29,7 +29,7 @@
               <input matInput placeholder="Nom du club" formControlName="nomClub" required>
             </mat-form-field>
             <mat-panel-description>
-              <button mat-raised-button color="accent" [disabled]="loading&&!nouveauClubForm.valid">Crée le club</button>
+              <button mat-raised-button color="accent" [disabled]="loading&&!nouveauClubForm.valid">CrÃ©er le club</button>
             </mat-panel-description>
           </form>
           
@@ -56,21 +56,18 @@
                   Nombre d'adherent : {{equipe.nombreUtilisateur}}
                 </mat-panel-description>
                 <mat-panel-description>
-                  Catégorie : {{equipe.categorie}}
+                  CatÃ©gorie : {{equipe.categorie}}
                 </mat-panel-description>
             <mat-icon mat-list-icon>group</mat-icon>
             <mat-divider></mat-divider>
           </mat-list-item>
           <form [formGroup]="nouvelleEquipeForm" (ngSubmit)="onSubmit()" layout="row" layout-align="center center"> 
-              <mat-form-field >
-                <input matInput placeholder="Nom de l'equipe" formControlName="nomEquipe" required>
-              </mat-form-field>
-                <button mat-raised-button color="accent" [disabled]="loading">Crée l'équipe</button>
+                <button mat-raised-button color="accent" [disabled]="!loading">CrÃ©er Ã©quipe</button>
             </form>
         </mat-list>
 
       </mat-expansion-panel>
     </mat-tab>
-    <mat-tab label="Mes équipes "> </mat-tab>
+    <mat-tab label="Mes Ã©quipes "> </mat-tab>
   </mat-tab-group>
 </div>

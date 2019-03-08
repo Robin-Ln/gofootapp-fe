@@ -5,6 +5,8 @@ import { ClubService } from 'src/app/service/club/club.service';
 import { Router } from '@angular/router';
 import { InscriptionAuClub } from 'src/app/modele/InscriptionAuClub';
 import {NouveauClub} from 'src/app/modele/nouveauClub'
+import { CookieService } from 'ng2-cookies';
+import { LoginService } from 'src/app/service/login/login.service';
 
 
 @Component({
@@ -19,11 +21,13 @@ export class ClubsComponent implements OnInit {
   nouveauClubForm: FormGroup;
   nouvelleEquipeForm: FormGroup;
   loading: Boolean = false;
+  userId:Number; 
 
-  constructor(private clubService: ClubService, private formBuilder: FormBuilder,private router: Router) {
+  constructor(private clubService: ClubService,private formBuilder: FormBuilder,private router: Router,private serviceLogin:LoginService, private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.userId= Number(this.cookieService.get('userId'));
     console.log('Le composant a fini son initialisation');
     this.getRejoindreClub();
     this.nouveauClubForm=this.formBuilder.group({
@@ -37,12 +41,12 @@ export class ClubsComponent implements OnInit {
 
   getRejoindreClub() {
     this.clubs = [];
-    this.clubService.getListeClubNonAdherer(3).subscribe(data => { this.clubs = data; });
+    this.clubService.getListeClubNonAdherer(this.userId).subscribe(data => { this.clubs = data; });
   }
 
   getMesClub() {
     this.clubs = [];
-    this.clubService.getListeClubAdherer(3).subscribe(data => { this.clubs = data; });
+    this.clubService.getListeClubAdherer(this.userId).subscribe(data => { this.clubs = data; });
   }
 
   async inscriptionClub(idc: Number,idu :Number){
